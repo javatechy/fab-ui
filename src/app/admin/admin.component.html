@@ -1,0 +1,71 @@
+<div style="text-align:center">
+  <h1>
+    Welcome Admin !
+  </h1>
+  <img width="100" src="https://static.fabhotels.com/icons/logo.svg">
+
+  <br>
+
+  <br>
+  <button md-raised-button color="warn" (click)="logOut()">Logout</button>
+</div>
+
+
+<md-tab-group>
+  <md-tab label="Users List">
+    <md-card *ngIf="users">
+      <table style="width:100%">
+        <tr>
+          <th>Id</th>
+          <th>User name</th>
+          <th>Password</th>
+          <th>Created On</th>
+          <th>Wallet Balance</th>
+          <th>Transactions</th>
+        </tr>
+        <tr *ngFor="let user of users;">
+          <th>{{user.userId}}</th>
+          <th>{{user.userName}}</th>
+          <th>{{user.password}}</th>
+          <th>{{user.createdOn.dayOfMonth + '-' + user.createdOn.monthValue + '-' + user.createdOn.year + ' '}}</th>
+          <th>
+            <button md-raised-button color="primary" (click)="getBalance(user.userId)">GET BALANCE</button>
+          </th>
+          <th>
+            <button md-raised-button color="primary" (click)="showTransactions(user.userId)">Show Transactions</button>
+          </th>
+        </tr>
+      </table>
+    </md-card>
+
+    <md-card>
+      <md-expansion-panel>
+        <md-expansion-panel-header color="primary">
+          <md-panel-title>
+            Transaction data
+          </md-panel-title>
+        </md-expansion-panel-header>
+        <table style="width:100%" *ngIf="transactions">
+          <tr>
+            <th>Transaction Id</th>
+            <th>Old Balance</th>
+            <th>New Balance</th>
+            <th>Transaction Amount</th>
+            <th>Transaction Type</th>
+            <th>Created On</th>
+          </tr>
+          <tr *ngFor="let transaction of transactions;">
+            <th>{{transaction.transactionId}}</th>
+            <th>{{transaction.oldBalance}}</th>
+            <th>{{transaction.newBalance}}</th>
+            <th>{{transaction.transactionAmount}}</th>
+            <th>{{transaction.transactionType}}</th>
+            <th>{{transaction.createdOn.dayOfMonth + '-' + transaction.createdOn.monthValue + '-' +
+              transaction.createdOn.year + ' '}}
+            </th>
+          </tr>
+        </table>
+      </md-expansion-panel>
+    </md-card>
+  </md-tab>
+</md-tab-group>

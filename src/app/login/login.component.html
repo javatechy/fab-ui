@@ -1,0 +1,36 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <img width="300" src="https://static.fabhotels.com/icons/logo.svg">
+
+  <br>
+
+  <br>
+
+  <form class="example-form" [formGroup]="loginForm"
+        (ngSubmit)="submitLoginForm(loginForm.value)">
+
+    <md-form-field class="example-full-width">
+      <input mdInput placeholder="User Name" formControlName="userName"
+             mdTooltip="To add new user please refer readme.md of fab-backend project" size="20">
+    </md-form-field>
+    <div style="color: chocolate;"
+         *ngIf="!loginForm.controls['userName'].valid && loginForm.controls['userName'].touched">Please enter username
+    </div>
+
+    <br>
+
+    <md-form-field class="example-full-width">
+      <input mdInput placeholder="Password" formControlName="password"
+             mdTooltip="Only Mandatory field validation is added" type="password" size="20">
+    </md-form-field>
+    <div style="color: chocolate;"
+         *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Please enter password
+    </div>
+    <br>
+    <button md-raised-button color="warn" [disabled]="!loginForm.valid">Login</button>
+  </form>
+</div>
+
+<router-outlet></router-outlet>

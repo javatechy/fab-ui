@@ -1,0 +1,65 @@
+<div style="text-align:center">
+  <h1 md-tooltip="Refresh page to check latest balance">
+    Welcome {{userName}} !
+    <br/>
+    <span *ngIf="walletBalance">
+      Your wallet Balance is <span style="color: firebrick" >{{walletBalance}}</span>
+    </span>
+  </h1>
+  <img width="200" src="https://static.fabhotels.com/icons/logo.svg">
+  <br>
+  <br>
+  <button md-raised-button color="warn" (click)="logOut()">Logout</button>
+</div>
+
+
+<md-tab-group>
+  <md-tab label="Recharge">
+    <md-card>
+      <form class="example-form" [formGroup]="rechargeForm"
+            (ngSubmit)="submitRechargeForm(rechargeForm.value)">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Enter Amount" formControlName="amount"
+                 mdTooltip="Enter Recharge Amount" size="20">
+        </md-form-field>
+        <div style="color: chocolate;"
+             *ngIf="!rechargeForm.controls['amount'].valid && rechargeForm.controls['amount'].touched">Please enter amount
+        </div>
+        <br>
+        <button md-raised-button  color="warn"  [disabled]="!rechargeForm.valid">Proceed</button>
+      </form>
+    </md-card>
+  </md-tab>
+  <md-tab label="Bill Payment">
+    <md-card>
+      <form class="example-form" [formGroup]="billPaymentForm"
+            (ngSubmit)="submitBillPaymentForm(billPaymentForm.value)">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Enter Bill Amount" formControlName="amount"
+                 mdTooltip="Enter Amount" size="20">
+        </md-form-field>
+        <div style="color: chocolate;"
+             *ngIf="!billPaymentForm.controls['amount'].valid && billPaymentForm.controls['amount'].touched">Please enter amount
+        </div>
+        <br>
+        <button md-raised-button  color="warn"  [disabled]="!billPaymentForm.valid">Proceed</button>
+      </form>
+    </md-card>
+  </md-tab>
+  <md-tab label="Buy Movie Tickets">
+    <md-card>
+      <form class="example-form" [formGroup]="movieForm"
+            (ngSubmit)="submitMovieForm(movieForm.value)">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Enter Movie Amount" formControlName="amount"
+                 mdTooltip="Enter Amount" size="20">
+        </md-form-field>
+        <div style="color: chocolate;"
+             *ngIf="!movieForm.controls['amount'].valid && movieForm.controls['amount'].touched">Please enter amount
+        </div>
+        <br>
+        <button md-raised-button  color="warn"  [disabled]="!movieForm.valid">Proceed</button>
+      </form>
+    </md-card>
+  </md-tab>
+</md-tab-group>
